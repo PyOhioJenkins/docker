@@ -11,13 +11,11 @@ pipeline
     {
       steps 
       {
-        dir(path: 'maven') 
-        {
-          withMaven(maven: 'Maven 3.5.0') 
-          {
-            sh 'mvn package -Dmaven.test.failure.ignore'
-          }
-        }
+		  withMaven(maven: 'Maven 3.5.0') 
+		  {
+		  	// Workaround for Jenkins issue 33510
+			sh 'cd maven && mvn package -Dmaven.test.failure.ignore'
+		  }
       }
     }
     
