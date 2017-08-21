@@ -23,13 +23,11 @@ pipeline
     {
       steps 
       {
-        dir(path: 'maven') 
-        {
           withMaven(maven: 'Maven 3.5.0') 
           {
-            sh 'mvn site:site'
+		  	// Workaround for Jenkins issue 33510
+            sh 'cd maven && mvn site:site'
           }
-        }
       }
     }
     
